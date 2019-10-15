@@ -9,7 +9,6 @@ import {
 } from 'scheduler'
 
 import { CanvasContext } from './canvas'
-import { version } from '../package.json'
 
 export type GlobalRenderCallback = (timeStamp: number) => boolean
 
@@ -414,7 +413,7 @@ export function createPortal(children: React.ReactNode, containerInfo: any, impl
 
 Renderer.injectIntoDevTools({
   bundleType: process.env.NODE_ENV === 'production' ? 0 : 1,
-  version: version,
+  version: 'unknown',
   rendererPackageName: 'react-three-fiber',
   findHostInstanceByFiber: Renderer.findHostInstance,
 })
