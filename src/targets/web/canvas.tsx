@@ -52,7 +52,10 @@ const IsReady = React.memo(
     canvas: HTMLCanvasElement
     size: RectReadOnly
   }) => {
-    const gl = useMemo(() => new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, ...props.gl }), [])
+    const gl = useMemo(() => {
+      let context = canvas.getContext('webgl2')
+      return new THREE.WebGLRenderer({ canvas, context, antialias: true, alpha: true, ...props.gl })
+    }, [])
 
     // Init canvas, fetch events, hand them back to the warpping div
     const events = useCanvas({ ...props, gl })
